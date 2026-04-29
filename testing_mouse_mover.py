@@ -12,6 +12,8 @@ app_count_y = 0
 
 app_movement_speed = .2
 
+
+
 #pyautogui.moveTo(50,30) ##This is the dead center of the First App
 # pyautogui.moveTo(50,135) ## This is the dead center of the Second Row First App
 # pyautogui.moveTo(135,30) ## 
@@ -28,7 +30,7 @@ pyautogui.moveTo(app_starting_line_x + (app_distance_x * app_count_x), app_start
 # 4 to the app count == half of the screen
 # 8 to the app count == full screen
 
-total_moves = 8
+total_moves = 20
 pyautogui.mouseDown(button='left')
 for innie in range(total_moves):
     app_count_x += 1
