@@ -34,12 +34,12 @@ folder_pos = FOLDER_START_POS
 MASTER_KAT_PATH = Path(__file__).resolve().parent / "apples" / "kat_master.jpg"
 
 # Drag timing tuned so desktop icon drags register consistently.
-DRAG_HOLD_DELAY = 0.06
-PLACEMENT_DRAG_MOVE_DURATION = 0.175
+DRAG_HOLD_DELAY = 0.05           # minimum for Explorer to register drag start
+PLACEMENT_DRAG_MOVE_DURATION = 0.12  # fast sweep, not instant (avoids missed drops)
 DRAG_MOVE_DURATION = 0
-POST_DROP_DELAY = 0.075
-FILE_APPEAR_DELAY = 0.3
-BETWEEN_ICON_DELAY = 0.225
+POST_DROP_DELAY = 0.06           # let Explorer settle the drop before next move
+FILE_APPEAR_DELAY = 0.35         # file exists on disk but Explorer icon render lags behind
+BETWEEN_ICON_DELAY = 0.15        # small buffer between icons; wait_for_path adds natural delay
 
 load_dotenv(Path(__file__).resolve().parent / ".env")
 USER_PATH = os.getenv("USER_PATH")
