@@ -1,25 +1,42 @@
-import ctypes
+# this is for the technicals for python to find the .env or the path finding for the desktop things
+import ctypes           
 import os
-import random
 import shutil
-import time
+
+# this is the actual Path routing usage
 from pathlib import Path
 
-import keyboard
-import pyautogui
+# .env 
 from dotenv import load_dotenv
 
+# actual useful stuff that does the game parts
+import keyboard
+import pyautogui
+import time 
+import random
 
-# Grid settings for desktop traversal.
+
+
+
+# this is the raw number for finding the locations of the apps Position X = first app + (distance to next app * counter)
+# NOTE: I am using the Small Icons for the desktop for windows. Reason I bring this up is because these numbers are the exact pixel for the center of smaller icons, thus also the grid size is smaller
+# Idk how to change it but whatever
+
+# But if you do care to find out for whatever app size you have use these function from pyautogui
+# pyautogui.moveTo(0,0) ==> Moves the mouse to the origin which is not the center of the screen but instead the top left corner. 
+# With that use pyautogui.position() on the center of the app that can be placed there. This will find the exact pixel location of the mouse at that point in time
+# finally place an app to its closest right and closest bottom and do some math (new app local - old app local = distance between)
 app_distance_x = 95
 app_distance_y = 105
 app_starting_line_x = 50
 app_starting_line_y = 30
 
-grid = []
-snake_body = [(0, 0)]
-direction = "Stop"
-running = True
+grid = []                   # the grid is for easy traversal
+snake_body = [(0, 0)]   # once this game was supposed to be a snake but nah. 
+direction = "Stop"      # the "snake" will start with no motion. 
+
+# all of this is the set up for the actual game and killswitch set up
+running = True          
 setup_complete = False
 shutdown_requested = False
 
@@ -58,7 +75,7 @@ def get_safe_zone_folder():
     return desktop / "safe_zone_pilkmilk_cursed_game_folder"
 
 
-# Tell Windows Explorer a file was created so the desktop icon appears immediately.
+# Tell Windows Explorer a file was created so the desktop icon appears immediately. Or however fast your computer can handle. Mine is slow so its "quickly slow". 
 _SHCNE_CREATE = 0x00000002
 _SHCNE_DELETE = 0x00000004
 _SHCNF_PATH = 0x0005
